@@ -7,3 +7,10 @@ test('renders learn react link', () => {
   const linkElement = getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+// new approach adding tests in a live container
+test('renders learn react link', () => {
+  const { getByText } = render(<App />);
+  const linkElement = getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});

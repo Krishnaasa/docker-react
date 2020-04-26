@@ -1,0 +1,23 @@
+version: '3'
+services: 
+    web:
+        # build: .  # this will not work since docker-compose 
+        # will look for docker file 
+        stdin_open: true
+        build: 
+            context: . # specifies where the files src should be found
+            dockerfile: Dockerfile.dev # in current directory look in this file
+        ports:
+            - "3000:3000"
+        volumes: 
+            - /app/node_modules        #no mapping
+            - .:/app           # map current folder with docker app
+    tests:  # approach2 to have live tests executed
+        stdin_open: true
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /app/node_modules  # - means list in yml
+            - .:/app
+        command: ["npm", "run", "test"] 
