@@ -13,6 +13,8 @@ RUN npm run build
 # /app/build is what is needed for run phase
 
 FROM nginx
+EXPOSE 80
+# this is specific to aws ebs port mapping
 COPY --from=builder /app/build /usr/share/nginx/html
 # RUN nginx is not needed because thats a default 
 # cmd for this container
