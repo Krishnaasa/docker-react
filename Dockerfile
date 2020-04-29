@@ -1,8 +1,8 @@
 # Section 1
 # Build Phase
-FROM node:alpine as builder
+FROM node:alpine
 WORKDIR '/app'
-COPY package.json .
+COPY package*.json ./
 RUN npm install
 COPY . . 
 # copies all source code, since no changes from here on
@@ -15,6 +15,6 @@ RUN npm run build
 FROM nginx
 EXPOSE 80
 # this is specific to aws ebs port mapping
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 # RUN nginx is not needed because thats a default 
 # cmd for this container
