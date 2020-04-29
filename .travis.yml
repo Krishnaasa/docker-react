@@ -13,7 +13,7 @@ script:
     - docker run -e CI=true krishna201294/docker-react npm run test -- --coverage
 
 # revision 2 for deployment
-deploy:1
+deploy:
     provider: elasticbeanstalk
     region: "us-east-1"
     name: "docker-react" # name as in aws ebs
